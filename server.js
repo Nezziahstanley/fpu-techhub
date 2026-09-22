@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,9 +11,6 @@ app.get('/healthz', (req, res) => {
   res.status(200).json({ status: 'ok', institution: 'Federal Polytechnic Ugep' });
 });
 
-// ============================================================
-//  SYSTEMS DATA
-// ============================================================
 const systems = {
   ai: [
     {
@@ -23,7 +19,7 @@ const systems = {
       category: 'Chatbot',
       shortDesc: 'AI chatbot for student enquiries, admissions, and course registration guidance.',
       longDescription:
-        'The FPU Smart Assistant is a conversational AI built specifically for Federal Polytechnic Ugep. It handles admissions enquiries, course registration guidance, fee schedules, and departmental information — 24/7. It remembers conversation context, supports English and Nigerian Pidgin, and integrates directly with the school portal.',
+        'The FPU Smart Assistant is a conversational AI built specifically for Federal Polytechnic Ugep. It handles admissions enquiries, course registration guidance, fee schedules, and departmental information — 24/7.',
       features: [
         '24/7 automated student enquiries',
         'Multi-language: English + Pidgin',
@@ -42,7 +38,7 @@ const systems = {
       category: 'Analytics',
       shortDesc: 'ML model that predicts CGPA trends and flags at-risk students early.',
       longDescription:
-        'Using historical academic records, this system predicts a student\'s likely CGPA trajectory and flags at-risk students before results are even released. Lecturers and HODs receive automated alerts when a student shows signs of academic decline.',
+        'Using historical academic records, this system predicts a student\'s likely CGPA trajectory and flags at-risk students before results are even released.',
       features: [
         'CGPA prediction with 90%+ accuracy',
         'Early warning alerts for at-risk students',
@@ -61,7 +57,7 @@ const systems = {
       category: 'Computer Vision',
       shortDesc: 'Facial recognition attendance for lectures and exams.',
       longDescription:
-        'A camera-based attendance system that recognizes students\' faces as they enter a lecture hall. Eliminates manual roll calls, prevents impersonation, and logs every attendance event with a timestamp.',
+        'A camera-based attendance system that recognizes students\' faces as they enter a lecture hall. Eliminates manual roll calls and prevents impersonation.',
       features: [
         'Real-time facial recognition',
         'Anti-spoofing (photo/video detection)',
@@ -192,37 +188,11 @@ app.get('/api/system/:id', (req, res) => {
   res.json(sys);
 });
 
-// ============================================================
-//  BOOKS DATA — loaded from data/books.json
-// ============================================================
-let books = { ai: [], cyber: [] };
-try {
-  const booksPath = path.join(__dirname, 'data', 'books.json');
-  books = JSON.parse(fs.readFileSync(booksPath, 'utf8'));
-  console.log(`📚 Loaded ${books.ai.length} AI books + ${books.cyber.length} cyber books`);
-} catch (err) {
-  console.warn('⚠️  data/books.json not found. Run: node generate-books.js');
-}
-
-app.get('/api/books/:domain', (req, res) => {
-  const { domain } = req.params;
-  if (!books[domain]) return res.status(404).json({ error: 'Domain not found' });
-  res.json(books[domain]);
-});
-app.get('/api/book/:id', (req, res) => {
-  const all = [...books.ai, ...books.cyber];
-  const book = all.find(b => b.id === req.params.id);
-  if (!book) return res.status(404).json({ error: 'Book not found' });
-  res.json({ ...book, domain: req.params.id.startsWith('ai') ? 'ai' : 'cyber' });
-});
-
 // ============ PAGE ROUTES ============
-app.get('/',              (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.get('/ai',            (req, res) => res.sendFile(path.join(__dirname, 'public', 'ai.html')));
-app.get('/cyber',         (req, res) => res.sendFile(path.join(__dirname, 'public', 'cyber.html')));
-app.get('/system/:id',    (req, res) => res.sendFile(path.join(__dirname, 'public', 'system.html')));
-app.get('/books/:domain', (req, res) => res.sendFile(path.join(__dirname, 'public', 'books.html')));
-app.get('/book/:id',      (req, res) => res.sendFile(path.join(__dirname, 'public', 'book.html')));
+app.get('/',           (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('/ai',         (req, res) => res.sendFile(path.join(__dirname, 'public', 'ai.html')));
+app.get('/cyber',      (req, res) => res.sendFile(path.join(__dirname, 'public', 'cyber.html')));
+app.get('/system/:id', (req, res) => res.sendFile(path.join(__dirname, 'public', 'system.html')));
 
 app.use((req, res) => res.status(404).sendFile(path.join(__dirname, 'public', 'index.html')));
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Cybersecurity Web Systems & E-Books at Federal Polytechnic Ugep" />
+  <meta name="description" content="Cybersecurity Web Systems at Federal Polytechnic Ugep" />
   <title>Cybersecurity — FPU TechHub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -11,7 +11,7 @@
 
   <nav class="navbar">
     <a href="/" class="brand">
-      <img src="/fpu-logo.png" alt="Federal Polytechnic Ugep Logo" class="logo-img" />
+      <img src="/fpu-logo.png" alt="FPU Logo" class="logo-img" />
       <div class="brand-text">
         <span class="brand-name">Federal Polytechnic Ugep</span>
         <span class="brand-sub">TechHub Systems</span>
@@ -24,7 +24,6 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <header class="page-hero cyber-theme">
     <div class="floating-bg" aria-hidden="true">
       <img class="float-img" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=70" alt="" />
@@ -47,7 +46,6 @@
     </div>
   </header>
 
-  <!-- CYBER SYSTEMS -->
   <section class="domain-section cyber-theme">
     <div class="container">
       <div class="section-header">
@@ -68,42 +66,52 @@
     </div>
   </section>
 
-  <!-- CYBER E-BOOKS (INLINE) -->
+  <!-- CYBER E-BOOK LIBRARY (external links) -->
   <section class="domain-section cyber-theme" id="cyber-books">
     <div class="container">
       <div class="section-header">
-        <span class="badge">📚 E-Book Library</span>
-        <h2>Cybersecurity E-Books</h2>
-        <p>Free security textbooks — read online or download as PDF. All 100 titles available.</p>
+        <span class="badge">📚 E-Book Libraries</span>
+        <h2>Cybersecurity Book Collections</h2>
+        <p>Free, external libraries with hundreds of downloadable cybersecurity PDFs. Click any to open in a new tab.</p>
       </div>
 
-      <div class="library-toolbar">
-        <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="cyber-search" placeholder="Search cybersecurity books..." />
-        </div>
-        <select id="cyber-filter-level" class="filter-select">
-          <option value="">All Levels</option>
-          <option value="Beginner">Beginner</option>
-          <option value="Intermediate">Intermediate</option>
-          <option value="Advanced">Advanced</option>
-        </select>
-      </div>
+      <div class="library-links-grid">
+        <a href="https://github.com/Mr-Infect/cyber-security-books" target="_blank" rel="noopener" class="library-link-card">
+          <div class="library-link-icon">🛡️</div>
+          <h3>Cyber Security Books</h3>
+          <p>600+ categorized cybersecurity PDFs — ethical hacking, cryptography, forensics, networking, CEH prep.</p>
+          <span class="library-link-cta">Open Library ↗</span>
+        </a>
 
-      <p class="results-count" id="cyber-results-count">Loading cybersecurity books…</p>
-      <div class="books-grid" id="cyber-books-grid">
-        <p class="loading">Loading cybersecurity books…</p>
+        <a href="https://github.com/arceuzvx/Cybersecurity_resources" target="_blank" rel="noopener" class="library-link-card">
+          <div class="library-link-icon">🔐</div>
+          <h3>Cybersecurity Resources</h3>
+          <p>Roadmap-driven collection organized by learning stage — Foundations, Defensive, Offensive, Specializations.</p>
+          <span class="library-link-cta">Open Library ↗</span>
+        </a>
+
+        <a href="https://github.com/onlurking/awesome-infosec" target="_blank" rel="noopener" class="library-link-card">
+          <div class="library-link-icon">💻</div>
+          <h3>Awesome InfoSec</h3>
+          <p>Curated list of information security courses, books, tools, and training resources.</p>
+          <span class="library-link-cta">Open Library ↗</span>
+        </a>
+
+        <a href="https://open.umn.edu/opentextbooks/subjects/computer-science" target="_blank" rel="noopener" class="library-link-card">
+          <div class="library-link-icon">🎓</div>
+          <h3>Open Textbook Library</h3>
+          <p>Peer-reviewed, openly-licensed security and computer science textbooks.</p>
+          <span class="library-link-cta">Open Library ↗</span>
+        </a>
       </div>
-      <div class="pagination" id="cyber-pagination"></div>
     </div>
   </section>
 
-  <!-- CROSS CTA -->
   <section class="cross-cta">
     <div class="container cross-cta-inner">
       <div>
         <h3>Curious about intelligence?</h3>
-        <p>Explore our AI systems and e-books.</p>
+        <p>Explore our AI systems and book collections.</p>
       </div>
       <a href="/ai" class="btn btn-ai">View AI Systems →</a>
     </div>
@@ -120,7 +128,6 @@
 
   <script>
     window.PAGE_DOMAIN = 'cyber';
-    window.PAGE_BOOKS = 'cyber';
   </script>
   <script src="script.js"></script>
 </body>
