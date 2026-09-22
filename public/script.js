@@ -511,3 +511,115 @@ document.addEventListener('DOMContentLoaded', () => {
   renderBookDetail();
   initCounterObserver();
 });
+
+// ============================================================
+//  INLINE BOOKS ON AI/CYBER PAGES
+// ============================================================
+const INLINE_BOOKS_PER_PAGE = 20;
+let inlineBooks = [];
+let inlineFiltered = [];
+let inlinePage = 1;
+let inlinePrefix = '';
+
+async function loadInlineBooks() {
+  const domain = window.PAGE_BOOKS;
+  if (!domain) return;
+
+  inlinePrefix = domain; // 'ai' or 'cyber'
+  const grid = document.getElementById(`${domain}-books-grid`);
+  if (!grid) return;
+
+  try {
+    const res = await fetch(`/api/books/${domain}`);
+    if (!res.ok) throw new Error('Failed');
+    inlineBooks = await res.json();
+    inlineFiltered = [...inlineBooks];
+    inlinePage = 1;
+    renderInlineBooks();
+    attachInlineBookListeners();
+  } catch (err) {
+    console.error(err);
+    grid.innerHTML = '<p class="loading">Unable to load books. Please try again.</p>';
+  }
+}
+
+function renderInlineBooks() {
+  const grid = document.getElementById(`${inlinePrefix}-books-grid`);
+  const countEl = document.getElementById(`${inlinePrefix}-results-count`);
+  const pagEl = document.getElementById(`${inlinePrefix}-pagination`);
+
+  const start = (inlinePage - 1) * INLINE_BOOKS_PER_PAGE;
+  const pageBooks = inlineFiltered.slice(start, start + INLINE_BOOKS_PER_PAGE);
+
+  if (countEl) {
+    countEl.textContent = `Showing ${start + 1}–${Math.min(start + INLINE_BOOKS_PER_PAGE, inlineFiltered.length)} of ${inlineFiltered.length} books`;
+  }
+
+  if (pageBooks.length === 0) {
+    grid.innerHTML = '<p class="loading">No books match your search.</p>';
+    if (pagEl) pagEl.innerHTML = '';
+    return;
+  }
+
+  grid.innerHTML = pageBooks.map(formatBook).join('');
+  renderInlinePagination();
+}
+
+function renderInlinePagination() {
+  const el = document.getElementById(`${inlinePrefix}-pagination`);
+  if (!el) return;
+
+  const totalPages = Math.ceil(inlineFiltered.length / INLINE_BOOKS_PER_PAGE);
+  if (totalPages <= 1) { el.innerHTML = ''; return; }
+
+  let html = `<button class="page-btn" data-page="prev" ${inlinePage === 1 ? 'disabled' : ''}>← Prev</button>`;
+
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || Math.abs(i - inlinePage) <= 2) {
+      html += `<button class="page-btn ${i === inlinePage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    } else if (Math.abs(i - inlinePage) === 3) {
+      html += '<span class="page-dots">…</span>';
+    }
+  }
+
+  html += `<button class="page-btn" data-page="next" ${inlinePage === totalPages ? 'disabled' : ''}>Next →</button>`;
+  el.innerHTML = html;
+
+  el.querySelectorAll('.page-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const p = btn.dataset.page;
+      if (p === 'prev') inlinePage = Math.max(1, inlinePage - 1);
+      else if (p === 'next') inlinePage = Math.min(totalPages, inlinePage + 1);
+      else inlinePage = parseInt(p, 10);
+      renderInlineBooks();
+      document.getElementById(`${inlinePrefix}-books`)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+function applyInlineFilters() {
+  const search = (document.getElementById(`${inlinePrefix}-search`)?.value || '').toLowerCase();
+  const level = document.getElementById(`${inlinePrefix}-filter-level`)?.value || '';
+
+  inlineFiltered = inlineBooks.filter(b => {
+    const matchesSearch = !search ||
+      b.title.toLowerCase().includes(search) ||
+      b.author.toLowerCase().includes(search) ||
+      b.category.toLowerCase().includes(search);
+    const matchesLevel = !level || b.level === level;
+    return matchesSearch && matchesLevel;
+  });
+
+  inlinePage = 1;
+  renderInlineBooks();
+}
+
+function attachInlineBookListeners() {
+  document.getElementById(`${inlinePrefix}-search`)?.addEventListener('input', applyInlineFilters);
+  document.getElementById(`${inlinePrefix}-filter-level`)?.addEventListener('change', applyInlineFilters);
+}
+
+// Add to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+  loadInlineBooks();
+});

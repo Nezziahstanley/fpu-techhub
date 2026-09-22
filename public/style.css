@@ -1226,3 +1226,28 @@ footer {
     opacity: 0.12;
   }
 }
+
+/* ============================================================
+   INLINE BOOK SECTIONS on ai.html / cyber.html
+   ============================================================ */
+#ai-books,
+#cyber-books {
+  border-top: 1px solid var(--border);
+  padding-top: 6rem;
+}
+
+#ai-books .section-header .badge,
+#cyber-books .section-header .badge {
+  margin-bottom: 1rem;
+}
+
+#ai-books .books-grid,
+#cyber-books .books-grid {
+  margin-top: 0.5rem;
+}
+
+/* Make floating images extra subtle on ai/cyber pages */
+.page-hero .float-img {
+  opacity: 0.08;
+  filter: blur(3px) saturate(0.9);
+}
