@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Federal Polytechnic Ugep — AI & Cybersecurity Web Systems" />
+  <meta name="description" content="Federal Polytechnic Ugep — AI & Cybersecurity Web Systems + Free E-Book Library" />
   <title>FPU TechHub — AI & Cybersecurity Systems</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="page-home">
 
+  <!-- ============ NAVBAR ============ -->
   <nav class="navbar">
     <a href="/" class="brand">
       <img src="/fpu-logo.png" alt="Federal Polytechnic Ugep Logo" class="logo-img" />
@@ -24,6 +25,7 @@
     </ul>
   </nav>
 
+  <!-- ============ HERO ============ -->
   <header class="hero">
     <!-- Floating animated image background -->
     <div class="floating-bg" aria-hidden="true">
@@ -41,27 +43,23 @@
       <img class="float-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=70" alt="" />
     </div>
 
-    <div class="hero-content">
+    <d class="hero-content">
       <div class="hero-badge">Federal Polytechnic Ugep — Computer Science Department</div>
-      <h1>Two Domains.<br>One <span class="highlight">Platform</span>.</h1>
-      <p>Explore web-based systems engineered for <strong>Artificial Intelligence</strong> and <strong>Cybersecurity</strong> — built for the FPU community.</p>
-      <p class="hero-motto">"Technology for Development and Excellence"</p>
-      <div class="hero-actions">
-        <a href="/ai" class="btn btn-ai">Explore AI Systems →</a>
-        <a href="/cyber" class="btn btn-cyber">Explore Cybersecurity →</a>
-      </div>
+      <h1>SIMULATION<span class="highlight">Platform</span>.</h1>
     </div>
   </header>
 
+  <!-- ============ PORTAL CARDS ============ -->
   <section class="portal-section">
     <div class="container">
       <div class="section-header">
         <h2>Choose a Domain</h2>
-        <p>Click a card to view all systems in that domain.</p>
+        <p>Click a card to view all systems in that domain, or jump straight to the e-book library.</p>
       </div>
 
       <div class="portal-grid">
-        <a href="/ai" class="portal-card ai-portal">
+        <!-- AI PORTAL -->
+        <div class="portal-card ai-portal">
           <div class="portal-icon">🤖</div>
           <h3>Artificial Intelligence</h3>
           <p>Intelligent web systems for automation, analytics, and decision support.</p>
@@ -71,10 +69,14 @@
             <li>Computer Vision Suite</li>
             <li>Timetable Optimizer</li>
           </ul>
-          <span class="portal-cta">View AI Systems <span class="arrow">→</span></span>
-        </a>
+          <div class="portal-buttons">
+            <a href="/ai" class="btn btn-ai">View AI Systems</a>
+            <a href="/books/ai" class="btn btn-ghost">📚 AI Books (100)</a>
+          </div>
+        </div>
 
-        <a href="/cyber" class="portal-card cyber-portal">
+        <!-- CYBER PORTAL -->
+        <div class="portal-card cyber-portal">
           <div class="portal-icon">🛡️</div>
           <h3>Cybersecurity</h3>
           <p>Defensive systems protecting FPU's portals, networks, and student data.</p>
@@ -84,22 +86,27 @@
             <li>Exam Malpractice Detector</li>
             <li>Multi-Factor Login Portal</li>
           </ul>
-          <span class="portal-cta">View Cybersecurity <span class="arrow">→</span></span>
-        </a>
+          <div class="portal-buttons">
+            <a href="/cyber" class="btn btn-cyber">View Cybersecurity</a>
+            <a href="/books/cyber" class="btn btn-ghost">📚 Cyber Books (100)</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ============ ABOUT ============ -->
   <section id="about" class="about-section">
     <div class="container about-grid">
       <div>
         <h2>About FPU TechHub</h2>
         <p>FPU TechHub is a portfolio of web-based systems built to solve real problems at <strong>Federal Polytechnic Ugep</strong> — from AI-powered academic tools to cybersecurity defenses protecting the institution's digital infrastructure.</p>
-        <p>Developed by students and staff of the Computer Science Department, these systems demonstrate applied learning in modern software engineering.</p>
+        <p>Developed by students and staff of the Computer Science Department, these systems demonstrate applied learning in modern software engineering, and the accompanying e-book library gives students free access to 200 curated academic texts.</p>
         <div class="about-meta">
           <div><strong>📍 Location:</strong> Ugep, Cross River State, Nigeria</div>
           <div><strong>🏛 Institution:</strong> Federal Polytechnic Ugep</div>
           <div><strong>💻 Department:</strong> Computer Science</div>
+          <div><strong>📚 Library:</strong> 100 AI Books + 100 Cyber Books</div>
           <div><strong>🎯 Motto:</strong> Technology for Development and Excellence</div>
         </div>
       </div>
@@ -110,12 +117,14 @@
           <li>Vanilla JavaScript</li>
           <li>Modern CSS Grid / Flexbox</li>
           <li>REST API</li>
+          <li>PDF e-book integration</li>
           <li>Deployed on Render</li>
         </ul>
       </div>
     </div>
   </section>
 
+  <!-- ============ FOOTER ============ -->
   <footer>
     <div class="footer-content">
       <img src="/fpu-logo.png" alt="FPU Logo" class="footer-logo" />

@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,8 +14,6 @@ app.get('/healthz', (req, res) => {
 
 // ============================================================
 //  SYSTEMS DATA
-//  image: full online URL
-//  externalLink: where the "Launch System" button goes
 // ============================================================
 const systems = {
   ai: [
@@ -43,7 +42,7 @@ const systems = {
       category: 'Analytics',
       shortDesc: 'ML model that predicts CGPA trends and flags at-risk students early.',
       longDescription:
-        'Using historical academic records, this system predicts a student\'s likely CGPA trajectory and flags at-risk students before results are even released. Lecturers and HODs receive automated alerts when a student shows signs of academic decline, allowing for early intervention.',
+        'Using historical academic records, this system predicts a student\'s likely CGPA trajectory and flags at-risk students before results are even released. Lecturers and HODs receive automated alerts when a student shows signs of academic decline.',
       features: [
         'CGPA prediction with 90%+ accuracy',
         'Early warning alerts for at-risk students',
@@ -62,9 +61,9 @@ const systems = {
       category: 'Computer Vision',
       shortDesc: 'Facial recognition attendance for lectures and exams.',
       longDescription:
-        'A camera-based attendance system that recognizes students\' faces as they enter a lecture hall. It eliminates manual roll calls, prevents impersonation, and logs every attendance event with a timestamp. Works offline with local caching, then syncs when back online.',
+        'A camera-based attendance system that recognizes students\' faces as they enter a lecture hall. Eliminates manual roll calls, prevents impersonation, and logs every attendance event with a timestamp.',
       features: [
-        'Real-time facial recognition (<1s per student)',
+        'Real-time facial recognition',
         'Anti-spoofing (photo/video detection)',
         'Offline mode with sync',
         'Automatic attendance reports per course',
@@ -81,7 +80,7 @@ const systems = {
       category: 'Optimization',
       shortDesc: 'AI scheduling engine to eliminate clashes across departments.',
       longDescription:
-        'Generates optimal lecture timetables by balancing room availability, lecturer schedules, student cohorts, and departmental constraints. The engine runs multiple optimization passes to eliminate clashes and minimize idle gaps for students.',
+        'Generates optimal lecture timetables by balancing room availability, lecturer schedules, student cohorts, and departmental constraints.',
       features: [
         'Zero-clash timetable generation',
         'Room + lecturer + cohort balancing',
@@ -103,7 +102,7 @@ const systems = {
       category: 'IDS',
       shortDesc: 'Real-time intrusion detection across the polytechnic network.',
       longDescription:
-        'A network intrusion detection system monitoring all campus traffic for suspicious patterns, unauthorized access attempts, and malicious traffic. Alerts are pushed to the ICT unit in real time with full packet context and remediation suggestions.',
+        'A network intrusion detection system monitoring all campus traffic for suspicious patterns, unauthorized access attempts, and malicious traffic.',
       features: [
         'Real-time packet inspection',
         'Signature + anomaly-based detection',
@@ -120,9 +119,9 @@ const systems = {
       id: 'cy-2',
       name: 'Student Portal Security Scanner',
       category: 'AppSec',
-      shortDesc: 'Automated vulnerability scanning of the school portal and result checker.',
+      shortDesc: 'Automated vulnerability scanning of the school portal.',
       longDescription:
-        'A scheduled scanner that continuously probes the FPU student portal and result-checker system for OWASP Top 10 vulnerabilities — SQL injection, XSS, broken authentication, and misconfigurations. Produces a prioritized remediation report after every scan.',
+        'A scheduled scanner that continuously probes the FPU student portal and result-checker system for OWASP Top 10 vulnerabilities.',
       features: [
         'OWASP Top 10 automated checks',
         'Scheduled weekly scans',
@@ -141,7 +140,7 @@ const systems = {
       category: 'Anomaly Detection',
       shortDesc: 'Detects suspicious exam submission patterns and IP spoofing.',
       longDescription:
-        'Analyzes exam submission metadata — timing, IP addresses, browser fingerprints, answer patterns — to flag likely malpractice. Uses an Isolation Forest model trained on historical exam data to identify outliers without needing labelled fraud examples.',
+        'Analyzes exam submission metadata — timing, IP addresses, browser fingerprints — to flag likely malpractice using an Isolation Forest model.',
       features: [
         'Real-time submission anomaly scoring',
         'IP / device fingerprint correlation',
@@ -160,7 +159,7 @@ const systems = {
       category: 'IAM',
       shortDesc: 'MFA + SSO for staff and student portals.',
       longDescription:
-        'A unified authentication gateway providing Multi-Factor Authentication (TOTP + SMS) and Single Sign-On across all FPU web systems. Built on OAuth 2.0 and OpenID Connect, with audit logs for every login attempt.',
+        'A unified authentication gateway providing Multi-Factor Authentication (TOTP + SMS) and Single Sign-On across all FPU web systems.',
       features: [
         'TOTP + SMS second factor',
         'Single Sign-On across portals',
@@ -193,11 +192,37 @@ app.get('/api/system/:id', (req, res) => {
   res.json(sys);
 });
 
+// ============================================================
+//  BOOKS DATA — loaded from data/books.json
+// ============================================================
+let books = { ai: [], cyber: [] };
+try {
+  const booksPath = path.join(__dirname, 'data', 'books.json');
+  books = JSON.parse(fs.readFileSync(booksPath, 'utf8'));
+  console.log(`📚 Loaded ${books.ai.length} AI books + ${books.cyber.length} cyber books`);
+} catch (err) {
+  console.warn('⚠️  data/books.json not found. Run: node generate-books.js');
+}
+
+app.get('/api/books/:domain', (req, res) => {
+  const { domain } = req.params;
+  if (!books[domain]) return res.status(404).json({ error: 'Domain not found' });
+  res.json(books[domain]);
+});
+app.get('/api/book/:id', (req, res) => {
+  const all = [...books.ai, ...books.cyber];
+  const book = all.find(b => b.id === req.params.id);
+  if (!book) return res.status(404).json({ error: 'Book not found' });
+  res.json({ ...book, domain: req.params.id.startsWith('ai') ? 'ai' : 'cyber' });
+});
+
 // ============ PAGE ROUTES ============
-app.get('/',           (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.get('/ai',         (req, res) => res.sendFile(path.join(__dirname, 'public', 'ai.html')));
-app.get('/cyber',      (req, res) => res.sendFile(path.join(__dirname, 'public', 'cyber.html')));
-app.get('/system/:id', (req, res) => res.sendFile(path.join(__dirname, 'public', 'system.html')));
+app.get('/',              (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('/ai',            (req, res) => res.sendFile(path.join(__dirname, 'public', 'ai.html')));
+app.get('/cyber',         (req, res) => res.sendFile(path.join(__dirname, 'public', 'cyber.html')));
+app.get('/system/:id',    (req, res) => res.sendFile(path.join(__dirname, 'public', 'system.html')));
+app.get('/books/:domain', (req, res) => res.sendFile(path.join(__dirname, 'public', 'books.html')));
+app.get('/book/:id',      (req, res) => res.sendFile(path.join(__dirname, 'public', 'book.html')));
 
 app.use((req, res) => res.status(404).sendFile(path.join(__dirname, 'public', 'index.html')));
 
