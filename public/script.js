@@ -1,133 +1,242 @@
-// ============ ICONS PER CATEGORY ============
+// ============ ICONS ============
 const iconMap = {
-  'Chatbot': '🤖',
-  'Analytics': '📊',
-  'Computer Vision': '👁️',
-  'Optimization': '⚙️',
-  'IDS': '🛡️',
-  'AppSec': '🔍',
-  'Anomaly Detection': '⚠️',
-  'IAM': '🔐'
+  'Chatbot': '🤖', 'Analytics': '📊',
+  'Computer Vision': '👁️', 'Optimization': '⚙️',
+  'IDS': '🛡️', 'AppSec': '🔍',
+  'Anomaly Detection': '⚠️', 'IAM': '🔐'
 };
 
-// ============ RENDER CARD ============
-function createCard(system) {
-  const icon = iconMap[system.category] || '💠';
+// Inline SVG placeholder for broken image URLs
+const PLACEHOLDER =
+  'data:image/svg+xml;utf8,' + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#1e1b4b"/>
+          <stop offset="1" stop-color="#0f172a"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="240" fill="url(#g)"/>
+      <text x="50%" y="48%" text-anchor="middle" fill="#64748b"
+            font-family="system-ui" font-size="18" font-weight="700">FPU TechHub</text>
+      <text x="50%" y="60%" text-anchor="middle" fill="#475569"
+            font-family="system-ui" font-size="12">Image coming soon</text>
+    </svg>
+  `);
+
+// ============ CARD (listing pages) ============
+function createCard(s) {
+  const icon = iconMap[s.category] || '💠';
+  const isBeta = s.status === 'Beta';
+  const img = s.image || PLACEHOLDER;
+
   return `
-    <div class="card" data-id="${system.id}">
-      <div class="card-icon">${icon}</div>
-      <span class="category">${system.category}</span>
-      <h3>${system.name}</h3>
-      <p>${system.desc}</p>
-      <div class="card-status">
-        <span class="status-dot"></span> Operational
+    <a href="/system/${s.id}" class="card card-link" aria-label="View ${s.name}">
+      <div class="card-image">
+        <img src="${img}" alt="${s.name} — ${s.category}" loading="lazy"
+             onerror="this.onerror=null;this.src='${PLACEHOLDER}'"/>
+        <span class="card-image-badge">${icon} ${s.category}</span>
       </div>
-    </div>
+      <div class="card-body">
+        <h3>${s.name}</h3>
+        <p>${s.shortDesc || s.desc || ''}</p>
+        <div class="card-status">
+          <span class="status-dot ${isBeta ? 'beta' : ''}"></span>
+          ${s.status || 'Operational'}
+        </div>
+      </div>
+      <span class="card-arrow">→</span>
+    </a>
   `;
 }
 
-// ============ LOAD SYSTEMS ============
+// ============ LOAD SYSTEMS (listing pages) ============
 async function loadSystems() {
+  const domain = window.PAGE_DOMAIN;
+  const grid = document.getElementById('systems-grid');
+  if (!domain || !grid) return;
+
   try {
-    const res = await fetch('/api/systems');
-    if (!res.ok) throw new Error('Failed to fetch systems');
-    const data = await res.json();
-
-    const aiGrid = document.getElementById('ai-grid');
-    const cyberGrid = document.getElementById('cyber-grid');
-
-    aiGrid.innerHTML = data.ai.map(createCard).join('');
-    cyberGrid.innerHTML = data.cyber.map(createCard).join('');
-
-    // Apply tilt effect to freshly-rendered cards
+    const res = await fetch(`/api/systems/${domain}`);
+    if (!res.ok) throw new Error('Failed to fetch');
+    const list = await res.json();
+    grid.innerHTML = list.map(createCard).join('');
     attachTilt();
   } catch (err) {
-    console.error('Error loading systems:', err);
-    // Fallback: show a message if API fails
-    document.getElementById('ai-grid').innerHTML =
-      '<p style="color:#9ca3af;">Unable to load AI systems. Please try again later.</p>';
-    document.getElementById('cyber-grid').innerHTML =
-      '<p style="color:#9ca3af;">Unable to load Cybersecurity systems. Please try again later.</p>';
+    console.error(err);
+    grid.innerHTML = '<p class="loading">Unable to load systems. Please try again later.</p>';
   }
 }
 
-// ============ 3D TILT EFFECT ============
+// ============ DETAIL PAGE RENDERER ============
+function getSystemIdFromUrl() {
+  const parts = window.location.pathname.split('/').filter(Boolean);
+  return parts[0] === 'system' && parts[1] ? parts[1] : null;
+}
+
+async function renderSystemDetail() {
+  const wrap = document.getElementById('system-detail');
+  if (!wrap) return;
+
+  const id = getSystemIdFromUrl();
+  if (!id) {
+    wrap.innerHTML = `<div class="container"><p class="loading">System not found.</p></div>`;
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/system/${id}`);
+    if (!res.ok) throw new Error('System not found');
+    const s = await res.json();
+
+    const isAI = s.domain === 'ai';
+    const themeClass = isAI ? 'ai-theme' : 'cyber-theme';
+    const domainLabel = isAI ? 'Artificial Intelligence' : 'Cybersecurity';
+    const domainHref = isAI ? '/ai' : '/cyber';
+    const icon = iconMap[s.category] || '💠';
+    const img = s.image || PLACEHOLDER;
+    const isBeta = s.status === 'Beta';
+
+    document.title = `${s.name} — FPU TechHub`;
+
+    wrap.innerHTML = `
+      <header class="detail-hero ${themeClass}">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="${domainHref}">${domainLabel}</a>
+            <span>/</span>
+            <span class="current">${s.name}</span>
+          </nav>
+
+          <div class="detail-hero-grid">
+            <div class="detail-hero-text">
+              <span class="badge">${icon} ${s.category}</span>
+              <h1>${s.name}</h1>
+              <p>${s.shortDesc || ''}</p>
+
+              <div class="detail-actions">
+                <a href="${s.externalLink}" target="_blank" rel="noopener noreferrer"
+                   class="btn ${isAI ? 'btn-ai' : 'btn-cyber'}">
+                  🚀 Launch System
+                </a>
+                <a href="${domainHref}" class="btn btn-ghost">
+                  ← Back to ${domainLabel}
+                </a>
+              </div>
+
+              <div class="detail-status">
+                <span class="status-dot ${isBeta ? 'beta' : ''}"></span>
+                <span>Status: <strong>${s.status || 'Operational'}</strong></span>
+              </div>
+            </div>
+
+            <div class="detail-hero-image">
+              <img src="${img}" alt="${s.name}"
+                   onerror="this.onerror=null;this.src='${PLACEHOLDER}'"/>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="detail-body ${themeClass}">
+        <div class="container detail-grid">
+          <div class="detail-main">
+            <h2>Overview</h2>
+            <p>${s.longDescription || s.shortDesc || ''}</p>
+
+            <h2>Key Features</h2>
+            <ul class="feature-list">
+              ${(s.features || []).map(f => `<li>${f}</li>`).join('')}
+            </ul>
+
+            <h2>Direct Link</h2>
+            <div class="link-box">
+              <code>${s.externalLink}</code>
+              <a href="${s.externalLink}" target="_blank" rel="noopener noreferrer"
+                 class="btn ${isAI ? 'btn-ai' : 'btn-cyber'}">Open ↗</a>
+            </div>
+          </div>
+
+          <aside class="detail-side">
+            <div class="side-card">
+              <h3>Technology Stack</h3>
+              <div class="card-tags">
+                ${(s.stack || []).map(t => `<span>${t}</span>`).join('')}
+              </div>
+            </div>
+
+            <div class="side-card">
+              <h3>Domain</h3>
+              <p><a href="${domainHref}" class="side-link">${domainLabel} →</a></p>
+            </div>
+
+            <div class="side-card">
+              <h3>Quick Launch</h3>
+              <p>Access this system directly on its production server.</p>
+              <a href="${s.externalLink}" target="_blank" rel="noopener noreferrer"
+                 class="btn ${isAI ? 'btn-ai' : 'btn-cyber'} full-width">
+                Go to System ↗
+              </a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    `;
+  } catch (err) {
+    console.error(err);
+    wrap.innerHTML = `
+      <div class="container">
+        <p class="loading">System not found. <a href="/" style="color:#fbbf24;">Return home</a></p>
+      </div>`;
+  }
+}
+
+// ============ TILT ============
 function attachTilt() {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      const rotateX = ((y - cy) / cy) * -4;
-      const rotateY = ((x - cx) / cx) * 4;
-      card.style.transform = `translateY(-6px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      const rx = ((y - r.height / 2) / (r.height / 2)) * -4;
+      const ry = ((x - r.width  / 2) / (r.width  / 2)) *  4;
+      card.style.transform = `translateY(-6px) perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
     });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 }
 
-// ============ ANIMATED COUNTERS ============
+// ============ COUNTERS ============
 function animateCounters() {
   document.querySelectorAll('.stat-value').forEach(el => {
     const target = parseInt(el.dataset.count, 10);
     if (isNaN(target)) return;
-
-    const duration = 1500;
-    const start = performance.now();
-
-    function update(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-      el.textContent = Math.floor(eased * target).toLocaleString();
-      if (progress < 1) requestAnimationFrame(update);
+    const dur = 1500, start = performance.now();
+    (function update(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(e * target).toLocaleString();
+      if (p < 1) requestAnimationFrame(update);
       else el.textContent = target.toLocaleString();
-    }
-    requestAnimationFrame(update);
+    })(start);
   });
 }
 
-// Trigger counters when the stats row enters the viewport
 function initCounterObserver() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounters();
-        observer.disconnect();
-      }
+  const row = document.querySelector('.stats-row');
+  if (!row) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { animateCounters(); obs.disconnect(); }
     });
   }, { threshold: 0.4 });
-
-  const statsRow = document.querySelector('.stats-row');
-  if (statsRow) observer.observe(statsRow);
-}
-
-// ============ NAV ACTIVE HIGHLIGHT ============
-function initScrollSpy() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  window.addEventListener('scroll', () => {
-    const fromTop = window.scrollY + 150;
-    let current = '';
-
-    sections.forEach(sec => {
-      if (sec.offsetTop <= fromTop) current = sec.id;
-    });
-
-    navLinks.forEach(link => {
-      link.style.color = link.getAttribute('href') === `#${current}`
-        ? '#ffffff' : '';
-    });
-  });
+  obs.observe(row);
 }
 
 // ============ INIT ============
 document.addEventListener('DOMContentLoaded', () => {
   loadSystems();
+  renderSystemDetail();
   initCounterObserver();
-  initScrollSpy();
 });

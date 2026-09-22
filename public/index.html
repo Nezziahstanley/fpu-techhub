@@ -3,95 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Federal Polytechnic Ugep — AI & Cybersecurity Web Systems Portfolio" />
-  <title>FPU TechHub — AI & Cybersecurity Systems | Federal Polytechnic Ugep</title>
+  <meta name="description" content="Federal Polytechnic Ugep — AI & Cybersecurity Web Systems" />
+  <title>FPU TechHub — AI & Cybersecurity Systems</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="page-home">
 
-  <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="brand">
+    <a href="/" class="brand">
       <div class="logo-mark">FPU</div>
       <div class="brand-text">
         <span class="brand-name">TechHub</span>
         <span class="brand-sub">Federal Polytechnic Ugep</span>
       </div>
-    </div>
+    </a>
     <ul class="nav-links">
-      <li><a href="#ai-section">AI Systems</a></li>
-      <li><a href="#cyber-section">Cybersecurity</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="/ai">AI Systems</a></li>
+      <li><a href="/cyber">Cybersecurity</a></li>
+      <li><a href="/#about">About</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
   <header class="hero">
     <div class="hero-badge">🏫 Federal Polytechnic Ugep — Computer Science Department</div>
-    <h1>Building the Digital Future<br>of <span class="highlight">FPU</span></h1>
-    <p>Web-based systems engineered for <strong>Artificial Intelligence</strong> and <strong>Cybersecurity</strong> — developed by and for the Federal Polytechnic Ugep community.</p>
+    <h1>Two Domains.<br>One <span class="highlight">Platform</span>.</h1>
+    <p>Explore web-based systems engineered for <strong>Artificial Intelligence</strong> and <strong>Cybersecurity</strong> — built for the FPU community.</p>
     <div class="hero-actions">
-      <a href="#ai-section" class="btn btn-ai">Explore AI Systems</a>
-      <a href="#cyber-section" class="btn btn-cyber">Explore Cybersecurity</a>
+      <a href="/ai" class="btn btn-ai">Explore AI Systems →</a>
+      <a href="/cyber" class="btn btn-cyber">Explore Cybersecurity →</a>
     </div>
   </header>
 
-  <!-- AI SECTION -->
-  <section id="ai-section" class="domain-section ai-theme">
+  <section class="portal-section">
     <div class="container">
       <div class="section-header">
-        <span class="badge">◆ Artificial Intelligence</span>
-        <h2>AI Web Systems</h2>
-        <p>Intelligent platforms automating academic, administrative, and research processes at FPU.</p>
+        <h2>Choose a Domain</h2>
+        <p>Click a card to view all systems in that domain.</p>
       </div>
 
-      <div class="cards-grid" id="ai-grid">
-        <!-- Populated by script.js from /api/systems -->
-      </div>
+      <div class="portal-grid">
+        <a href="/ai" class="portal-card ai-portal">
+          <div class="portal-icon">🤖</div>
+          <h3>Artificial Intelligence</h3>
+          <p>Intelligent web systems for automation, analytics, and decision support.</p>
+          <ul class="portal-list">
+            <li>AI Chatbot Platform</li>
+            <li>Predictive Analytics Engine</li>
+            <li>Computer Vision Suite</li>
+            <li>Timetable Optimizer</li>
+          </ul>
+          <span class="portal-cta">View AI Systems <span class="arrow">→</span></span>
+        </a>
 
-      <div class="stats-row">
-        <div class="stat"><div class="stat-value" data-count="4">0</div><div class="stat-label">AI Systems</div></div>
-        <div class="stat"><div class="stat-value" data-count="1200">0</div><div class="stat-label">Students Served</div></div>
-        <div class="stat"><div class="stat-value" data-count="98">0</div><div class="stat-label">% Uptime</div></div>
+        <a href="/cyber" class="portal-card cyber-portal">
+          <div class="portal-icon">🛡️</div>
+          <h3>Cybersecurity</h3>
+          <p>Defensive systems protecting FPU's portals, networks, and student data.</p>
+          <ul class="portal-list">
+            <li>Campus Network Monitor</li>
+            <li>Portal Security Scanner</li>
+            <li>Exam Malpractice Detector</li>
+            <li>Multi-Factor Login Portal</li>
+          </ul>
+          <span class="portal-cta">View Cybersecurity <span class="arrow">→</span></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- CYBERSECURITY SECTION -->
-  <section id="cyber-section" class="domain-section cyber-theme">
-    <div class="container">
-      <div class="section-header">
-        <span class="badge">🛡 Cybersecurity</span>
-        <h2>Cybersecurity Web Systems</h2>
-        <p>Defensive systems protecting FPU's portals, networks, and student data.</p>
-      </div>
-
-      <div class="cards-grid" id="cyber-grid">
-        <!-- Populated by script.js from /api/systems -->
-      </div>
-
-      <div class="stats-row">
-        <div class="stat"><div class="stat-value" data-count="4">0</div><div class="stat-label">Security Systems</div></div>
-        <div class="stat"><div class="stat-value" data-count="24">0</div><div class="stat-label">/7 Monitoring</div></div>
-        <div class="stat"><div class="stat-value" data-count="100">0</div><div class="stat-label">% Logged</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
   <section id="about" class="about-section">
     <div class="container about-grid">
       <div>
         <h2>About FPU TechHub</h2>
-        <p>
-          FPU TechHub is a portfolio of web-based systems built to solve real problems at
-          <strong>Federal Polytechnic Ugep</strong> — from AI-powered academic tools to
-          cybersecurity defenses protecting the institution's digital infrastructure.
-        </p>
-        <p>
-          Developed by students and staff of the Computer Science Department, these systems
-          demonstrate applied learning in modern software engineering.
-        </p>
+        <p>FPU TechHub is a portfolio of web-based systems built to solve real problems at <strong>Federal Polytechnic Ugep</strong> — from AI-powered academic tools to cybersecurity defenses protecting the institution's digital infrastructure.</p>
+        <p>Developed by students and staff of the Computer Science Department, these systems demonstrate applied learning in modern software engineering.</p>
         <div class="about-meta">
           <div><strong>📍 Location:</strong> Ugep, Cross River State, Nigeria</div>
           <div><strong>🏛 Institution:</strong> Federal Polytechnic Ugep</div>
@@ -103,7 +88,7 @@
         <ul class="tech-list">
           <li>Node.js + Express</li>
           <li>Vanilla JavaScript</li>
-          <li>Modern CSS Grid/Flexbox</li>
+          <li>Modern CSS Grid / Flexbox</li>
           <li>REST API</li>
           <li>Deployed on Render</li>
         </ul>
@@ -111,7 +96,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-content">
       <div class="logo-mark small">FPU</div>
@@ -120,6 +104,5 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
