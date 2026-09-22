@@ -1,0 +1,18 @@
+{
+  "name": "fpu-techhub",
+  "version": "1.0.0",
+  "description": "FPU TechHub — AI & Cybersecurity Web Systems | Federal Polytechnic Ugep",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "author": "Federal Polytechnic Ugep — Computer Science Department",
+  "license": "MIT"
+}
