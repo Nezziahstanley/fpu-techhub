@@ -12,14 +12,14 @@ const PLACEHOLDER =
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
       <defs>
         <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#1e1b4b"/>
-          <stop offset="1" stop-color="#0f172a"/>
+          <stop offset="0" stop-color="#004d40"/>
+          <stop offset="1" stop-color="#0a1412"/>
         </linearGradient>
       </defs>
       <rect width="400" height="240" fill="url(#g)"/>
-      <text x="50%" y="48%" text-anchor="middle" fill="#64748b"
+      <text x="50%" y="48%" text-anchor="middle" fill="#d4af37"
             font-family="system-ui" font-size="18" font-weight="700">FPU TechHub</text>
-      <text x="50%" y="60%" text-anchor="middle" fill="#475569"
+      <text x="50%" y="60%" text-anchor="middle" fill="#9ba8a5"
             font-family="system-ui" font-size="12">Image coming soon</text>
     </svg>
   `);
@@ -188,7 +188,7 @@ async function renderSystemDetail() {
     console.error(err);
     wrap.innerHTML = `
       <div class="container">
-        <p class="loading">System not found. <a href="/" style="color:#fbbf24;">Return home</a></p>
+        <p class="loading">System not found. <a href="/" style="color:#d4af37;">Return home</a></p>
       </div>`;
   }
 }
@@ -201,7 +201,7 @@ function attachTilt() {
       const x = e.clientX - r.left, y = e.clientY - r.top;
       const rx = ((y - r.height / 2) / (r.height / 2)) * -4;
       const ry = ((x - r.width  / 2) / (r.width  / 2)) *  4;
-      card.style.transform = `translateY(-6px) perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      card.style.transform = `translateY(-4px) perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
     });
     card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });

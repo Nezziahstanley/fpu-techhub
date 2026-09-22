@@ -5,9 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js",
-    "edit": "node edit.js",
-    "bulk-edit": "node bulk-edit.js"
+    "dev": "node server.js"
   },
   "engines": {
     "node": ">=18.0.0"

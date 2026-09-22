@@ -13,7 +13,7 @@ app.get('/healthz', (req, res) => {
 
 // ============================================================
 //  SYSTEMS DATA
-//  image: full online URL (Unsplash, Cloudinary, Imgur, CDN, etc.)
+//  image: full online URL
 //  externalLink: where the "Launch System" button goes
 // ============================================================
 const systems = {
@@ -176,7 +176,6 @@ const systems = {
   ]
 };
 
-// Build flat index for /system/:id lookup
 const systemsIndex = {};
 Object.values(systems).flat().forEach(s => {
   systemsIndex[s.id] = { ...s, domain: s.id.startsWith('ai') ? 'ai' : 'cyber' };
