@@ -860,3 +860,98 @@ footer {
   letter-spacing: -2px;
   margin-bottom: 2rem;
 }
+
+/* ============================================================
+   EXTERNAL LIBRARY LINKS GRID
+   ============================================================ */
+.library-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.library-link-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 2rem 1.75rem;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.library-link-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+
+.ai-theme .library-link-card::before { background: var(--fpu-gold); }
+.cyber-theme .library-link-card::before { background: var(--cyber-primary); }
+
+.library-link-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.06);
+  border-color: var(--fpu-gold);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.library-link-card:hover::before { transform: scaleX(1); }
+
+.library-link-icon {
+  width: 56px; height: 56px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.1rem;
+  border: 1px solid var(--border);
+  background: rgba(0, 77, 64, 0.3);
+}
+.ai-theme .library-link-icon { color: var(--fpu-gold); border-color: var(--fpu-gold); }
+.cyber-theme .library-link-icon { color: var(--cyber-primary); border-color: var(--cyber-primary); }
+
+.library-link-card h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.library-link-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+
+.library-link-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: gap 0.3s;
+}
+.ai-theme .library-link-cta { color: var(--fpu-gold); }
+.cyber-theme .library-link-cta { color: var(--cyber-primary); }
+
+.library-link-card:hover .library-link-cta { gap: 0.8rem; }
+
+/* ============================================================
+   INLINE BOOKS SECTIONS (border separation)
+   ============================================================ */
+#ai-resources,
+#cyber-resources {
+  border-top: 1px solid var(--border);
+  padding-top: 6rem;
+}

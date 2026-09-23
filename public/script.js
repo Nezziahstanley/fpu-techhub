@@ -1,5 +1,5 @@
 // ============================================================
-//  FPU TECHHUB — JAVASCRIPT (no e-book library logic)
+//  FPU TECHHUB — JAVASCRIPT
 // ============================================================
 
 const iconMap = {
@@ -53,7 +53,7 @@ async function loadSystems() {
     attachTilt();
   } catch (err) {
     console.error('loadSystems error:', err);
-    grid.innerHTML = '<p class="loading">Unable to load systems.</p>';
+    grid.innerHTML = '<p class="loading">Unable to load models.</p>';
   }
 }
 
@@ -99,7 +99,7 @@ async function renderSystemDetail() {
               '<h1>' + s.name + '</h1>' +
               '<p>' + (s.shortDesc || '') + '</p>' +
               '<div class="detail-actions">' +
-                '<a href="' + s.externalLink + '" target="_blank" rel="noopener" class="btn ' + (isAI ? 'btn-ai' : 'btn-cyber') + '">🚀 Launch System</a>' +
+                '<a href="' + s.externalLink + '" target="_blank" rel="noopener" class="btn ' + (isAI ? 'btn-ai' : 'btn-cyber') + '">🚀 Launch Model</a>' +
                 '<a href="' + domainHref + '" class="btn btn-ghost">← Back</a>' +
               '</div>' +
               '<div class="detail-status">' +
@@ -132,7 +132,7 @@ async function renderSystemDetail() {
       '</section>';
   } catch (err) {
     console.error('renderSystemDetail error:', err);
-    wrap.innerHTML = '<div class="container" style="padding:10rem 1.5rem;"><p>System not found.</p></div>';
+    wrap.innerHTML = '<div class="container" style="padding:10rem 1.5rem;"><p>Model not found.</p></div>';
   }
 }
 
