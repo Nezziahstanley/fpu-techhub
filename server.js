@@ -11,6 +11,9 @@ app.get('/healthz', (req, res) => {
   res.status(200).json({ status: 'ok', institution: 'Federal Polytechnic Ugep' });
 });
 
+// ============================================================
+//  SYSTEMS DATA
+// ============================================================
 const systems = {
   ai: [
     {
