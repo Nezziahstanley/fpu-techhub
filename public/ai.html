@@ -24,6 +24,7 @@
     </ul>
   </nav>
 
+  <!-- AI MODELS -->
   <section class="domain-section ai-theme" style="padding-top: 8rem;">
     <div class="container">
       <div class="section-header">
@@ -45,42 +46,287 @@
     </div>
   </section>
 
-  <!-- AI RESOURCES (Legitimate sources only) -->
-  <section class="domain-section ai-theme" id="ai-resources">
+  <!-- AI STUDENT GALLERY (8 images, non-clickable) -->
+  <section class="domain-section ai-theme" id="ai-gallery">
     <div class="container">
       <div class="section-header">
-        <span class="badge">📚 Resources</span>
-        <h2>AI & Machine Learning Resources</h2>
-        <p>Curated, legally-safe external collections. Click any to open in a new tab.</p>
+        <span class="badge">🎓 Student Life</span>
+        <h2>Students Learning AI at FPU</h2>
+        <p>A snapshot of how artificial intelligence is being studied and applied across the Federal Polytechnic Ugep campus.</p>
       </div>
 
-      <div class="library-links-grid">
-        <a href="https://github.com/MarcosSete/awesome-free-ai-books" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">📚</div>
-          <h3>Awesome Free AI Books</h3>
-          <p>Curated list of legally-free AI/ML books from authors & publishers. Verified sources only.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+      <div class="student-gallery">
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Students studying AI" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Collaborative AI Study Sessions</h3>
+            <p>FPU Computer Science students work in groups to train their first neural networks, sharing insights and troubleshooting models together in the campus lab.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Student coding on laptop" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Hands-On Machine Learning</h3>
+            <p>Using Python, TensorFlow, and Jupyter notebooks, students build and train predictive models that solve real-world academic and administrative problems.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Student with laptop studying" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Deep Learning in the Lab</h3>
+            <p>Postgraduate and final-year students explore computer vision and NLP techniques, deploying models on local GPU workstations for rapid experimentation.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80" alt="Student studying on desktop" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Data Science Fundamentals</h3>
+            <p>Students analyze large datasets, learn feature engineering, and master the mathematics that powers modern AI systems through practical coursework.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Students working together" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>AI Project Development</h3>
+            <p>Teams design and prototype intelligent systems for the polytechnic — chatbots, recommendation engines, and automation tools that serve the FPU community.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" alt="Student at desktop workstation" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Research & Innovation</h3>
+            <p>Final-year projects push the boundaries of applied AI — from academic performance prediction to automated grading systems for departmental use.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Student team meeting" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Industry-Aligned Training</h3>
+            <p>Workshops bridge classroom theory and industry practice, preparing students for careers in AI engineering, data science, and intelligent systems.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?auto=format&fit=crop&w=800&q=80" alt="Student studying on laptop" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Continuous Learning Culture</h3>
+            <p>Students regularly access free online courses, research papers, and open textbooks to stay current with the fast-moving field of artificial intelligence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI BOOKS (20 real books) -->
+  <section class="domain-section ai-theme" id="ai-books">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">📚 Library</span>
+        <h2>AI & Machine Learning Books</h2>
+        <p>20 essential AI textbooks — click any title to open the official book directly.</p>
+      </div>
+
+      <div class="books-list">
+        <a href="https://www.deeplearningbook.org/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">01</span>
+          <div class="book-text">
+            <h3>Deep Learning</h3>
+            <p>Ian Goodfellow, Yoshua Bengio, Aaron Courville · 2016</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
 
-        <a href="https://open.umn.edu/opentextbooks/subjects/computer-science" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">🎓</div>
-          <h3>Open Textbook Library</h3>
-          <p>Peer-reviewed, openly-licensed computer science textbooks from university publishers.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+        <a href="https://udlbook.github.io/udlbook/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">02</span>
+          <div class="book-text">
+            <h3>Understanding Deep Learning</h3>
+            <p>Simon J.D. Prince · 2023</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
 
-        <a href="https://ocw.mit.edu/search/?q=artificial+intelligence" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">🏛️</div>
-          <h3>MIT OpenCourseWare — AI</h3>
-          <p>Free MIT course materials, lecture notes, and textbooks on AI and machine learning.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+        <a href="https://www.bishopbook.com/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">03</span>
+          <div class="book-text">
+            <h3>Deep Learning: Foundations and Concepts</h3>
+            <p>Christopher Bishop, Hugh Bishop · 2024</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
 
-        <a href="https://arxiv.org/list/cs.AI/recent" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">📄</div>
-          <h3>arXiv — AI Papers</h3>
-          <p>Open-access research papers from the global AI research community.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+        <a href="https://d2l.ai/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">04</span>
+          <div class="book-text">
+            <h3>Dive into Deep Learning</h3>
+            <p>Zhang, Lipton, Li, Smola · 2023</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://fleuret.org/public/lbdl.pdf" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">05</span>
+          <div class="book-text">
+            <h3>The Little Book of Deep Learning</h3>
+            <p>François Fleuret · 2023</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">06</span>
+          <div class="book-text">
+            <h3>Neural Networks and Deep Learning</h3>
+            <p>Michael Nielsen · 2015</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="http://incompleteideas.net/book/the-book-2nd.html" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">07</span>
+          <div class="book-text">
+            <h3>Reinforcement Learning: An Introduction</h3>
+            <p>Richard Sutton, Andrew Barto · 2018</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://probml.github.io/pml-book/book1.html" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">08</span>
+          <div class="book-text">
+            <h3>Probabilistic Machine Learning: An Introduction</h3>
+            <p>Kevin Murphy · 2022</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://probml.github.io/pml-book/book2.html" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">09</span>
+          <div class="book-text">
+            <h3>Probabilistic Machine Learning: Advanced Topics</h3>
+            <p>Kevin Murphy · 2023</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="http://web4.cs.ucl.ac.uk/staff/D.Barber/pmwiki/pmwiki.php?n=Brml.HomePage" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">10</span>
+          <div class="book-text">
+            <h3>Bayesian Reasoning and Machine Learning</h3>
+            <p>David Barber · 2012</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://web.stanford.edu/~hastie/ElemStatLearn/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">11</span>
+          <div class="book-text">
+            <h3>The Elements of Statistical Learning</h3>
+            <p>Hastie, Tibshirani, Friedman · 2009</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.statlearning.com/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">12</span>
+          <div class="book-text">
+            <h3>An Introduction to Statistical Learning</h3>
+            <p>James, Witten, Hastie, Tibshirani · 2021</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://cs.nyu.edu/~mohri/mlbook/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">13</span>
+          <div class="book-text">
+            <h3>Foundations of Machine Learning</h3>
+            <p>Mohri, Rostamizadeh, Talwalkar · 2018</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">14</span>
+          <div class="book-text">
+            <h3>Understanding Machine Learning</h3>
+            <p>Shalev-Shwartz, Ben-David · 2014</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="http://ciml.info/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">15</span>
+          <div class="book-text">
+            <h3>A Course in Machine Learning</h3>
+            <p>Hal Daumé III</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">16</span>
+          <div class="book-text">
+            <h3>Speech and Language Processing</h3>
+            <p>Jurafsky, Martin · 2026</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://mml-book.github.io/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">17</span>
+          <div class="book-text">
+            <h3>Mathematics for Machine Learning</h3>
+            <p>Deisenroth, Faisal, Ong · 2020</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">18</span>
+          <div class="book-text">
+            <h3>Convex Optimization</h3>
+            <p>Boyd, Vandenberghe · 2004</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://szeliski.org/Book/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">19</span>
+          <div class="book-text">
+            <h3>Computer Vision: Algorithms and Applications</h3>
+            <p>Richard Szeliski · 2022</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.aisafetybook.com/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">20</span>
+          <div class="book-text">
+            <h3>Introduction to AI Safety, Ethics, and Society</h3>
+            <p>Dan Hendrycks · 2024</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
       </div>
     </div>
@@ -90,7 +336,7 @@
     <div class="container cross-cta-inner">
       <div>
         <h3>Also exploring security?</h3>
-        <p>Check out our Cybersecurity models and resources.</p>
+        <p>Check out our Cybersecurity models and books.</p>
       </div>
       <a href="/cyber" class="btn btn-cyber">View Cybersecurity →</a>
     </div>

@@ -24,6 +24,7 @@
     </ul>
   </nav>
 
+  <!-- CYBER MODELS -->
   <section class="domain-section cyber-theme" style="padding-top: 8rem;">
     <div class="container">
       <div class="section-header">
@@ -45,56 +46,287 @@
     </div>
   </section>
 
-  <!-- CYBER RESOURCES (Legitimate sources only) -->
-  <section class="domain-section cyber-theme" id="cyber-resources">
+  <!-- CYBER STUDENT GALLERY (8 images, non-clickable) -->
+  <section class="domain-section cyber-theme" id="cyber-gallery">
     <div class="container">
       <div class="section-header">
-        <span class="badge">📚 Resources</span>
-        <h2>Cybersecurity Resources</h2>
-        <p>Curated, legally-safe external collections. Click any to open in a new tab.</p>
+        <span class="badge">🎓 Student Life</span>
+        <h2>Students Learning Cybersecurity at FPU</h2>
+        <p>A snapshot of how cybersecurity skills are being developed across the Federal Polytechnic Ugep campus.</p>
       </div>
 
-      <div class="library-links-grid">
-        <a href="https://www.cybok.org/" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">🛡️</div>
-          <h3>CyBOK — Body of Knowledge</h3>
-          <p>Academically-reviewed cybersecurity knowledge base. Free and legally clear.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+      <div class="student-gallery">
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80" alt="Student analyzing network security" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Network Defense Training</h3>
+            <p>Students learn to monitor, analyze, and defend campus networks using industry-standard tools like Wireshark and Snort in the security lab.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="Cybersecurity operations" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Ethical Hacking Practice</h3>
+            <p>Final-year students practice penetration testing in isolated virtual environments, learning to find vulnerabilities before attackers do.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Student with laptop" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Cryptography Foundations</h3>
+            <p>Students study modern cryptographic algorithms, from AES to RSA, and implement secure communication protocols for real applications.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Digital forensics study" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Digital Forensics Investigation</h3>
+            <p>Students learn the tools and techniques used to investigate cybercrimes — memory analysis, disk imaging, and chain-of-custody procedures.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=800&q=80" alt="Security operations center" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Security Operations Center</h3>
+            <p>Team-based training in a simulated SOC environment, where students respond to live incidents, triage alerts, and produce security reports.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="Web application security" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Web Application Security</h3>
+            <p>Students practice securing web applications against OWASP Top 10 vulnerabilities, learning both attack and defense techniques.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1633265486064-086b219458ec?auto=format&fit=crop&w=800&q=80" alt="Secure coding practice" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Secure Development Practices</h3>
+            <p>Lessons in secure coding, threat modeling, and DevSecOps pipelines prepare students to build software that is safe from the ground up.</p>
+          </div>
+        </div>
+
+        <div class="student-card">
+          <div class="student-image">
+            <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=800&q=80" alt="Cybersecurity career preparation" loading="lazy" />
+          </div>
+          <div class="student-writeup">
+            <h3>Certification & Career Prep</h3>
+            <p>Students prepare for industry certifications such as CompTIA Security+, CEH, and Network+ with hands-on labs and mock exams.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CYBER BOOKS (20 real books) -->
+  <section class="domain-section cyber-theme" id="cyber-books">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">📚 Library</span>
+        <h2>Cybersecurity Books</h2>
+        <p>20 essential cybersecurity references — click any title to open the official book directly.</p>
+      </div>
+
+      <div class="books-list">
+        <a href="https://www.cl.cam.ac.uk/~rja14/book.html" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">01</span>
+          <div class="book-text">
+            <h3>Security Engineering</h3>
+            <p>Ross Anderson · 2020</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
 
-        <a href="https://csrc.nist.gov/publications" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">📘</div>
-          <h3>NIST Publications</h3>
-          <p>Free US government cybersecurity standards, frameworks, and technical guides.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+        <a href="https://www.feistyduck.com/library/bulletproof-ssl-and-tls/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">02</span>
+          <div class="book-text">
+            <h3>Bulletproof SSL and TLS</h3>
+            <p>Ivan Ristić</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
 
-        <a href="https://www.sans.org/white-papers/" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">📄</div>
-          <h3>SANS Reading Room</h3>
-          <p>Free research papers and whitepapers from top security professionals.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+        <a href="https://www.schneier.com/books/applied-cryptography/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">03</span>
+          <div class="book-text">
+            <h3>Applied Cryptography</h3>
+            <p>Bruce Schneier · 1996</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
 
-        <a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">🔐</div>
-          <h3>OWASP Top 10</h3>
-          <p>The definitive free guide on the most critical web application security risks.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+        <a href="https://www.manning.com/books/real-world-cryptography" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">04</span>
+          <div class="book-text">
+            <h3>Real-World Cryptography</h3>
+            <p>David Wong · 2021</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
 
-        <a href="https://www.cisa.gov/resources-tools" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">🏛️</div>
-          <h3>CISA Resources</h3>
-          <p>Free cybersecurity guides from the US Cybersecurity & Infrastructure Security Agency.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+        <a href="https://www.crypto101.io/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">05</span>
+          <div class="book-text">
+            <h3>Crypto 101</h3>
+            <p>Laurens Van Houtven · 2017</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
 
-        <a href="https://open.umn.edu/opentextbooks/subjects/computer-science" target="_blank" rel="noopener" class="library-link-card">
-          <div class="library-link-icon">🎓</div>
-          <h3>Open Textbook Library</h3>
-          <p>Peer-reviewed, openly-licensed security and computer science textbooks.</p>
-          <span class="library-link-cta">Open Resource ↗</span>
+        <a href="https://nostarch.com/seriouscrypto" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">06</span>
+          <div class="book-text">
+            <h3>Serious Cryptography</h3>
+            <p>Jean-Philippe Aumasson · 2017</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">07</span>
+          <div class="book-text">
+            <h3>OWASP Top 10</h3>
+            <p>OWASP Foundation · 2021</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">08</span>
+          <div class="book-text">
+            <h3>OWASP Web Security Testing Guide</h3>
+            <p>OWASP Foundation</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://owasp.org/www-project-application-security-verification-standard/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">09</span>
+          <div class="book-text">
+            <h3>OWASP ASVS</h3>
+            <p>OWASP Foundation</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.cybok.org/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">10</span>
+          <div class="book-text">
+            <h3>CyBOK — Cyber Security Body of Knowledge</h3>
+            <p>National Cyber Security Centre (UK)</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://csrc.nist.gov/publications/sp800" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">11</span>
+          <div class="book-text">
+            <h3>NIST SP 800 Series</h3>
+            <p>National Institute of Standards and Technology</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.nist.gov/cyberframework" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">12</span>
+          <div class="book-text">
+            <h3>NIST Cybersecurity Framework</h3>
+            <p>National Institute of Standards and Technology · 2024</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.sans.org/white-papers/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">13</span>
+          <div class="book-text">
+            <h3>SANS Reading Room</h3>
+            <p>SANS Institute</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.cisa.gov/resources-tools" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">14</span>
+          <div class="book-text">
+            <h3>CISA Resources & Tools</h3>
+            <p>Cybersecurity & Infrastructure Security Agency</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://attack.mitre.org/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">15</span>
+          <div class="book-text">
+            <h3>MITRE ATT&CK Framework</h3>
+            <p>The MITRE Corporation</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.first.org/cvss/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">16</span>
+          <div class="book-text">
+            <h3>Common Vulnerability Scoring System (CVSS)</h3>
+            <p>FIRST.org</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.exploit-db.com/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">17</span>
+          <div class="book-text">
+            <h3>Exploit Database</h3>
+            <p>Offensive Security</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://open.umn.edu/opentextbooks/subjects/computer-science" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">18</span>
+          <div class="book-text">
+            <h3>Open Textbook Library — CS Security</h3>
+            <p>University of Minnesota</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.cybrary.it/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">19</span>
+          <div class="book-text">
+            <h3>Cybrary — Free Security Courses</h3>
+            <p>Cybrary</p>
+          </div>
+          <span class="book-open">Open ↗</span>
+        </a>
+
+        <a href="https://www.freecodecamp.org/news/tag/cybersecurity/" target="_blank" rel="noopener" class="book-row">
+          <span class="book-num">20</span>
+          <div class="book-text">
+            <h3>freeCodeCamp Cybersecurity Curriculum</h3>
+            <p>freeCodeCamp</p>
+          </div>
+          <span class="book-open">Open ↗</span>
         </a>
       </div>
     </div>
@@ -104,7 +336,7 @@
     <div class="container cross-cta-inner">
       <div>
         <h3>Curious about intelligence?</h3>
-        <p>Explore our AI models and resources.</p>
+        <p>Explore our AI models and books.</p>
       </div>
       <a href="/ai" class="btn btn-ai">View AI Models →</a>
     </div>
